@@ -17,7 +17,7 @@ const BestSellers = () => {
           _id="1011"
           img={bestSellerOne}
           productName="Flower Base"
-          price="35.00"
+          price="3500.00"
           color="Blank and White"
           badge={true}
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
@@ -26,7 +26,7 @@ const BestSellers = () => {
           _id="1012"
           img={bestSellerTwo}
           productName="New Backpack"
-          price="180.00"
+          price="3800.00"
           color="Gray"
           badge={false}
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
@@ -35,7 +35,7 @@ const BestSellers = () => {
           _id="1013"
           img={bestSellerThree}
           productName="Household materials"
-          price="25.00"
+          price="925.00"
           color="Mixed"
           badge={true}
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
@@ -44,7 +44,7 @@ const BestSellers = () => {
           _id="1014"
           img={bestSellerFour}
           productName="Travel Bag"
-          price="220.00"
+          price="3220.00"
           color="Black"
           badge={false}
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."

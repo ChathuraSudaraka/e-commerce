@@ -33,6 +33,10 @@ const SignIn = () => {
 
     if (!password) {
       setErrPassword("Create a password");
+    } else {
+      if (password.length < 6) {
+        setErrPassword("Password must be at least 6 characters");
+      }
     }
     // ============== Getting the value ==============
     if (email && password) {
@@ -62,7 +66,7 @@ const SignIn = () => {
             </span>
             <p className="text-base text-gray-300">
               <span className="text-white font-semibold font-titleFont">
-                Get started fast with OREBI
+                Get started fast with ESHOP
               </span>
               <br />
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab omnis
@@ -75,7 +79,7 @@ const SignIn = () => {
             </span>
             <p className="text-base text-gray-300">
               <span className="text-white font-semibold font-titleFont">
-                Access all OREBI services
+                Access all ESHOP services
               </span>
               <br />
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab omnis
@@ -98,7 +102,7 @@ const SignIn = () => {
           <div className="flex items-center justify-between mt-10">
             <Link to="/">
               <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
-                © OREBI
+                © ESHOP
               </p>
             </Link>
             <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
@@ -138,7 +142,7 @@ const SignIn = () => {
                 {/* Email */}
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Work Email
+                    Email
                   </p>
                   <input
                     onChange={handleEmail}

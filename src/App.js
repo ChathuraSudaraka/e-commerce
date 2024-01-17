@@ -22,6 +22,14 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
+import ChangePassword from "./pages/Profile/pages/ChangePassword";
+import PaymentMethod from "./pages/Profile/pages/Payment";
+import General from "./pages/Profile/pages/General";
+import PaymentSignUp from "./pages/Account/PaymentSignUp";
+import Addproduct from "./pages/Admin/pages/AddProduct";
+import DeleteProduct from "./pages/Admin/pages/DeleteProduct";
+import UpdateProduct from "./pages/Admin/pages/UpdateProduct";
+import AdminLogin from "./pages/Account/AdminLogin";
 
 const Layout = () => {
   return (
@@ -54,6 +62,16 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/payment" element={<PaymentSignUp />}></Route>
+      <Route path="/adminLogin" element={<AdminLogin />}></Route>
+      {/* ====================== User Profile Panel ==================== */}
+      <Route path="/profile" element={<General />}></Route>
+      <Route path="/changePassword" element={<ChangePassword />}></Route>
+      <Route path="/paymentMethod" element={<PaymentMethod />}></Route>
+      {/* ====================== Admin Panel ====================== */}
+      <Route path="/admin" element={<Addproduct />}></Route>
+      <Route path="/deleteproduct" element={<DeleteProduct />}></Route>
+      <Route path="/updateproduct" element={<UpdateProduct />}></Route>
     </Route>
   )
 );
