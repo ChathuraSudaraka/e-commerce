@@ -1,250 +1,102 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { FaSearch } from "react-icons/fa";
 import Sidebar from "../layouts/sidebar/Sidebar";
+import { paginationItems } from "../../../constants";
+import ProductRemoveModal from "../layouts/modal/ProductRemoveModal";
 
-const UpdateProduct = () => {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [productName, setProductName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [productColor, setProductColor] = useState("");
-  const [productImage, setProductImage] = useState("");
-  const [formErrors, setFormErrors] = useState({});
+const DeleteProduct = () => {
+  const products = useSelector((state) => state.orebiReducer.products);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
-    // Validation logic
-    const errors = {};
+  useEffect(() => {
+    const filtered = paginationItems.filter((item) =>
+      item.productName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [searchQuery]);
 
-    if (!search.trim()) {
-      errors.search = "Search is required";
-    }
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
-    if (!category.trim()) {
-      errors.category = "Category is required";
-    }
-
-    if (!productName.trim()) {
-      errors.productName = "Product Name is required";
-    }
-
-    if (!description.trim()) {
-      errors.description = "Description is required";
-    }
-
-    if (!price.trim()) {
-      errors.price = "Price is required";
-    } else if (isNaN(price) || +price <= 0) {
-      errors.price = "Price must be a valid positive number";
-    }
-
-    if (!productColor.trim()) {
-      errors.productColor = "Product Color is required";
-    }
-
-    if (!productImage.trim()) {
-      errors.productImage = "Product Image URL is required";
-    }
-
-    if (Object.keys(errors).length === 0) {
-      // If no errors, proceed with form submission (e.g., make API call to update the product)
-      alert("Form submitted successfully!");
-    } else {
-      // If there are errors, update the state to display error messages
-      setFormErrors(errors);
-    }
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <div className="flex flex-col md:flex-row">
       <Sidebar />
-      <main className="flex-1 p-4 md:order-2">
+      <main className="flex-1 p-4 md:order-2 overflow-y-auto">
         <div className="mx-auto">
           <h2 className="text-2xl font-bold mb-4">Remove Product</h2>
-          <div className="bg-white p-4 border border-gray-400 shadow">
-            <form onSubmit={handleSubmit}>
-              <div className="p-4 border border-gray-600">
-                {/* Search */}
-                <div className="mb-4">
-                  <label
-                    htmlFor="search"
-                    className="text-base font-titleFont font-semibold px-2"
-                  >
-                    Search Product
-                  </label>
-                  <input
-                    type="text"
-                    id="search"
-                    className={`w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor ${
-                      formErrors.search && "border-red-500"
-                    }`}
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                  {formErrors.search && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {formErrors.search}
-                    </p>
-                  )}
-                </div>
-              </div>
+          <div className="relative w-full lg:w-[600px] h-[50px]">
+            <input
+              className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-full"
+              type="text"
+              onChange={handleSearch}
+              value={searchQuery}
+              placeholder="Search your products here"
+            />
+            <div className="absolute right-3 top-5 transform -translate-y-1/2">
+              <FaSearch className="w-5 h-5 text-primeColor" />
+            </div>
+          </div>
 
-              {/* Category */}
-              <div className="mb-4 mt-4">
-                <label
-                  htmlFor="category"
-                  className="text-base font-titleFont font-semibold px-2"
-                >
-                  Category
-                </label>
-                <input
-                  type="text"
-                  id="category"
-                  className={`w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor ${
-                    formErrors.category && "border-red-500"
-                  }`}
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                />
-                {formErrors.category && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {formErrors.category}
-                  </p>
-                )}
-              </div>
-
-              {/* Product Name */}
-              <div className="mb-4">
-                <label
-                  htmlFor="productName"
-                  className="text-base font-titleFont font-semibold px-2"
-                >
-                  Product Name
-                </label>
-                <input
-                  type="text"
-                  id="productName"
-                  className={`w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor ${
-                    formErrors.productName && "border-red-500"
-                  }`}
-                  value={productName}
-                  onChange={(e) => setProductName(e.target.value)}
-                />
-                {formErrors.productName && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {formErrors.productName}
-                  </p>
-                )}
-              </div>
-
-              {/* Description */}
-              <div className="mb-4">
-                <label
-                  htmlFor="description"
-                  className="text-base font-titleFont font-semibold px-2"
-                >
-                  Description
-                </label>
-                <textarea
-                  id="description"
-                  className={`w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor ${
-                    formErrors.description && "border-red-500"
-                  }`}
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-                {formErrors.description && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {formErrors.description}
-                  </p>
-                )}
-              </div>
-
-              {/* Price */}
-              <div className="mb-4">
-                <label
-                  htmlFor="price"
-                  className="text-base font-titleFont font-semibold px-2"
-                >
-                  Price
-                </label>
-                <input
-                  type="text"
-                  id="price"
-                  className={`w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor ${
-                    formErrors.price && "border-red-500"
-                  }`}
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-                {formErrors.price && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {formErrors.price}
-                  </p>
-                )}
-              </div>
-
-              {/* Product Color */}
-              <div className="mb-4">
-                <label
-                  htmlFor="productColor"
-                  className="text-base font-titleFont font-semibold px-2"
-                >
-                  Product Color
-                </label>
-                <input
-                  type="text"
-                  id="productColor"
-                  className={`w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor ${
-                    formErrors.productColor && "border-red-500"
-                  }`}
-                  value={productColor}
-                  onChange={(e) => setProductColor(e.target.value)}
-                />
-                {formErrors.productColor && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {formErrors.productColor}
-                  </p>
-                )}
-              </div>
-
-              {/* Product Image */}
-              <div className="mb-4">
-                <label
-                  htmlFor="productImage"
-                  className="text-base font-titleFont font-semibold px-2"
-                >
-                  Product Image
-                </label>
-                <input
-                  type="text"
-                  id="productImage"
-                  className={`w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor ${
-                    formErrors.productImage && "border-red-500"
-                  }`}
-                  value={productImage}
-                  onChange={(e) => setProductImage(e.target.value)}
-                />
-                {formErrors.productImage && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {formErrors.productImage}
-                  </p>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                className="bg-primeColor text-white text-lg font-bodyFont w-[185px] h-[50px] mr-4 hover:bg-black duration-300 font-bold"
+          <div className="bg-gray-200 border border-gray-500 h-[580px] mt-4">
+            {searchQuery && (
+              <div
+                className={`h-[580px] mx-auto top-16 w-full overflow-y-scroll scrollbar-hide cursor-pointer rounded-md p-4`}
               >
-                Update Product
-              </button>
-            </form>
+                {searchQuery &&
+                  filteredProducts.map((item) => (
+                    <div
+                      key={item._id}
+                      className="w-full h-28 bg-white mb-3 flex items-center gap-4 rounded-md p-3 cursor-pointer hover:shadow-md transition duration-300"
+                    >
+                      <img
+                        className="w-24 h-24 object-cover rounded-md"
+                        src={item.img}
+                        alt="productImg"
+                      />
+                      <div className="flex flex-col flex-1">
+                        <p className="font-semibold text-lg">
+                          {item.productName}
+                        </p>
+                        <p className="text-xs">{item.des}</p>
+                        <p className="text-sm">
+                          Price:{" "}
+                          <span className="text-primeColor font-semibold">
+                            LKR {item.price}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="">
+                        <button
+                          onClick={openModal}
+                          className="bg-red-600 text-white text-lg font-bodyFont w-[185px] h-[50px] mr-4 hover:bg-red-700 duration-300 font-bold"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       </main>
+      {isModalOpen && <ProductRemoveModal closeModal={closeModal} />}
     </div>
   );
 };
 
-export default UpdateProduct;
+export default DeleteProduct;
