@@ -30,6 +30,8 @@ import Addproduct from "./pages/Admin/pages/AddProduct";
 import DeleteProduct from "./pages/Admin/pages/DeleteProduct";
 import UpdateProduct from "./pages/Admin/pages/UpdateProduct";
 import AdminLogin from "./pages/Account/AdminLogin";
+import FPASS from "./pages/Account/ForgotPassword";
+
 
 const Layout = () => {
   return (
@@ -64,6 +66,7 @@ const router = createBrowserRouter(
       <Route path="/signin" element={<SignIn />}></Route>
       <Route path="/payment" element={<PaymentSignUp />}></Route>
       <Route path="/adminLogin" element={<AdminLogin />}></Route>
+      <Route path="/forgotpassword" element={<FPASS />}></Route>
       {/* ====================== User Profile Panel ==================== */}
       <Route path="/profile" element={<General />}></Route>
       <Route path="/changePassword" element={<ChangePassword />}></Route>

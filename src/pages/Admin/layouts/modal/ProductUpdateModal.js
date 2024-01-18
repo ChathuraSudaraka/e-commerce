@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-import { FaImage } from "react-icons/fa";
 import { Dialog, Transition } from "@headlessui/react";
 import Dropzone from "react-dropzone"; // Import Dropzone
 
