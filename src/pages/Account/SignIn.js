@@ -196,7 +196,7 @@ const SignIn = () => {
                 <p className="text-sm text-center font-titleFont font-medium">
                   <Link to="/forgotpassword">
                     <span className="hover:text-blue-600 duration-300">
-                      forgot Password
+                      forgot Password ?
                     </span>
                   </Link>
                 </p>

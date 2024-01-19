@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import OtpInput from 'react-otp-input';
+import OtpInput from "react-otp-input";
+import { Link } from "react-router-dom";
 
 const ForgotPassModal = ({ closeModal }) => {
   const [otp, setOtp] = useState("");
@@ -13,10 +14,7 @@ const ForgotPassModal = ({ closeModal }) => {
     <div>
       <Transition.Root show={true} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-10" onClose={closeModal}>
-          {/* ... (previous Transition.Child components) */}
-
           <div className="fixed inset-0 z-10 flex items-center justify-center">
-            {/* ... (previous Transition.Child components) */}
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -48,20 +46,14 @@ const ForgotPassModal = ({ closeModal }) => {
                   />
                 </div>
                 <div className="mt-4 flex justify-end">
-                  <button
-                    type="button"
-                    className="ml-2 px-3 py-2 text-sm font-medium text-white bg-primeColor hover:bg-black rounded-md"
-                    onClick={handleUpdate}
-                  >
-                    Update
-                  </button>
-                  <button
+                  <Link
+                    to="/changepassword"
                     type="button"
                     className="ml-2 px-3 py-2 text-sm font-medium text-white bg-primeColor hover:bg-black rounded-md"
                     onClick={closeModal}
                   >
-                    Close
-                  </button>
+                    Submit
+                  </Link>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
