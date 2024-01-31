@@ -42,9 +42,12 @@ const ChangePass = () => {
     <div className="flex items-center justify-center content-center h-screen">
       <div className="flex flex-col gap-2 w-full max-w-md p-4">
         <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-3xl mdl:text-4xl mb-4">
-          Sign in
+          Change Password
         </h1>
-        <label htmlFor="newPassword" className="text-base font-semibold text-gray-600">
+        <label
+          htmlFor="newPassword"
+          className="text-base font-semibold text-gray-600"
+        >
           New Password
         </label>
         <div className="relative">
@@ -66,7 +69,10 @@ const ChangePass = () => {
           </span>
         </div>
 
-        <label htmlFor="retypePassword" className="text-base font-semibold text-gray-600">
+        <label
+          htmlFor="retypePassword"
+          className="text-base font-semibold text-gray-600"
+        >
           Retype New Password
         </label>
         <div className="relative">

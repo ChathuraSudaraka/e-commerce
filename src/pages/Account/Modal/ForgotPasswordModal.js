@@ -47,7 +47,7 @@ const ForgotPassModal = ({ closeModal }) => {
                 </div>
                 <div className="mt-4 flex justify-end">
                   <Link
-                    to="/changepassword"
+                    to="/changepass"
                     type="button"
                     className="ml-2 px-3 py-2 text-sm font-medium text-white bg-primeColor hover:bg-black rounded-md"
                     onClick={closeModal}

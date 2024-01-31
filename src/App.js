@@ -68,7 +68,6 @@ const router = createBrowserRouter(
       <Route path="/payment" element={<PaymentSignUp />}></Route>
       <Route path="/adminLogin" element={<AdminLogin />}></Route>
       <Route path="/forgotpassword" element={<FPASS />}></Route>
-      <Route path="/changepassword" element={<ChangePass />}></Route>
       {/* ====================== User Profile Panel ==================== */}
       <Route path="/profile" element={<General />}></Route>
       <Route path="/changePassword" element={<ChangePassword />}></Route>

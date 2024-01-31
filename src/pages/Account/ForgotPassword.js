@@ -20,6 +20,9 @@ const FPASS = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex flex-col gap-2 w-full max-w-md p-4">
+        <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-3xl mdl:text-4xl mb-4">
+          Forgot Password
+        </h1>
         <label
           htmlFor="email"
           className="text-base font-semibold text-gray-600"
